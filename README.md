@@ -1,10 +1,10 @@
-# evo-plugins-audio-artefacts
+# evo-device-audio-artefacts
 
-> The release plane for [evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio). Brand-neutral audio plugin commons artefacts, signed by the evo project, fetched by any audio distribution.
+> The release plane for [evo-device-audio](https://github.com/foonerd/evo-device-audio). Brand-neutral audio plugin commons artefacts, signed by the evo project, fetched by any audio distribution.
 
 Manifest in. Signed bytes out. Consumers pick the channel.
 
-This repository is the device-facing (and distribution-facing) surface of the audio-domain plugin commons. Editing source code in [evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio) does not touch these assets. What lands here is exactly what an audio distribution (or a device tracking commons directly) fetches and verifies.
+This repository is the device-facing (and distribution-facing) surface of the audio-domain plugin commons. Editing source code in [evo-device-audio](https://github.com/foonerd/evo-device-audio) does not touch these assets. What lands here is exactly what an audio distribution (or a device tracking commons directly) fetches and verifies.
 
 ## What lives here
 
@@ -20,7 +20,7 @@ flowchart LR
     consumer ==>|4. fetch, verify, place| pieces
 ```
 
-Empty today. The release-plane contract (artefact-manifest schema, channel-pointer signing format, verification protocol) is being authored in evo-core; the publish pipeline waits on its release. First content arrives when both: (a) the contract is documented in evo-core, (b) [evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio)'s `promote.yml` workflow is wired against it.
+Empty today. The release-plane contract (artefact-manifest schema, channel-pointer signing format, verification protocol) is being authored in evo-core; the publish pipeline waits on its release. First content arrives when both: (a) the contract is documented in evo-core, (b) [evo-device-audio](https://github.com/foonerd/evo-device-audio)'s `promote.yml` workflow is wired against it.
 
 ## Channels
 
@@ -41,7 +41,7 @@ Either way: the consumer verifies the manifest signature against the commons pub
 
 ## Publishing artefacts
 
-Two workflows in [evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio) write to this repository (placeholders today; activate when the release-plane contract lands in evo-core):
+Two workflows in [evo-device-audio](https://github.com/foonerd/evo-device-audio) write to this repository (placeholders today; activate when the release-plane contract lands in evo-core):
 
 -   **continuous-dev** - on code commits to the source repo, automatically builds, signs, and publishes to the `dev` channel.
 -   **promote** - on manual dispatch, edits channel pointers in the manifest and re-signs the manifest. No rebuild.
@@ -50,7 +50,7 @@ The `manual-build` workflow does not publish to this repository; it builds and u
 
 ## Signing and trust
 
-The evo project signs every artefact under this namespace with the commons signing key. The private key lives only in the GitHub Actions repository secret `PLUGIN_SIGNING_KEY_PEM` on the source repository. The public half is committed in the source repository at [`keys/commons-plugin-signing-public.pem`](https://github.com/foonerd/evo-plugins-audio/blob/main/keys/commons-plugin-signing-public.pem) with sidecar metadata at [`keys/commons-plugin-signing-public.meta.toml`](https://github.com/foonerd/evo-plugins-audio/blob/main/keys/commons-plugin-signing-public.meta.toml).
+The evo project signs every artefact under this namespace with the commons signing key. The private key lives only in the GitHub Actions repository secret `PLUGIN_SIGNING_KEY_PEM` on the source repository. The public half is committed in the source repository at [`keys/commons-plugin-signing-public.pem`](https://github.com/foonerd/evo-device-audio/blob/main/keys/commons-plugin-signing-public.pem) with sidecar metadata at [`keys/commons-plugin-signing-public.meta.toml`](https://github.com/foonerd/evo-device-audio/blob/main/keys/commons-plugin-signing-public.meta.toml).
 
 Public key fingerprint (SHA256 of the DER-encoded SubjectPublicKeyInfo):
 `9cd7d7381ee7c2b3bfa490b39077afdc925192299dda661ef94dddba71e574da`
@@ -59,11 +59,11 @@ Distributions that admit `org.evoframework.*` plugins bundle this trust root by 
 
 ## Status
 
-Empty. Populated when (a) the evo-core release-plane contract lands, and (b) [evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio)'s publish workflows wire against it.
+Empty. Populated when (a) the evo-core release-plane contract lands, and (b) [evo-device-audio](https://github.com/foonerd/evo-device-audio)'s publish workflows wire against it.
 
 ## Related
 
--   [foonerd/evo-plugins-audio](https://github.com/foonerd/evo-plugins-audio) - the source repository this release plane serves.
+-   [foonerd/evo-device-audio](https://github.com/foonerd/evo-device-audio) - the source repository this release plane serves.
 -   [foonerd/evo-core](https://github.com/foonerd/evo-core) - the framework.
 -   [foonerd/evo-device-volumio-artefacts](https://github.com/foonerd/evo-device-volumio-artefacts) - the first audio distribution's release plane; consumes commons pieces.
 
