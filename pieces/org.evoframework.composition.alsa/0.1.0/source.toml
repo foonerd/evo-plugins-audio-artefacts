@@ -1,0 +1,7 @@
+schema_version = 0
+piece = "org.evoframework.composition.alsa"
+version = "0.1.0"
+git_repository = "https://github.com/foonerd/evo-plugins-audio.git"
+git_rev = "86d0e71750bdcc0468b0729f768fe68ea36245a8"
+crate_path = "plugins/org.evoframework.composition.alsa"
+published_at = "2026-04-28T05:27:41Z"
